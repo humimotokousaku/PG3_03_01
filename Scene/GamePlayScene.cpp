@@ -8,9 +8,7 @@ GamePlayScene::~GamePlayScene() {
 }
 
 void GamePlayScene::Init() {
-	// キー入力を受け取る
-	memcpy(preKeys, keys, 256);
-	Novice::GetHitKeyStateAll(keys);
+	inputManager_->GetInstance();
 
 	// 自機
 	player_ = new Player();
@@ -26,12 +24,8 @@ void GamePlayScene::Init() {
 }
 
 void GamePlayScene::Update() {
-	// キー入力を受け取る
-	memcpy(preKeys, keys, 256);
-	Novice::GetHitKeyStateAll(keys);
-
 	// 自機
-	player_->Update(keys, preKeys);
+	player_->Update();
 
 	// 敵
 	enemy_->Update();

@@ -1,15 +1,11 @@
 #include "TitleScene.h"
 
 void TitleScene::Init() {
-
+	inputManager_ = InputManager::GetInstance();
 }
 
 void TitleScene::Update() {
-	// キー入力を受け取る
-	memcpy(preKeys, keys, 256);
-	Novice::GetHitKeyStateAll(keys);
-
-	if (preKeys[DIK_SPACE] == 0 && keys[DIK_SPACE] != 0) {
+	if (inputManager_->ReleaseKey(DIK_SPACE)) {
 		sceneNo = STAGE;
 	}
 }

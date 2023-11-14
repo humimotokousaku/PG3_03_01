@@ -4,6 +4,7 @@
 #include "ClearScene.h"
 #include "Utility.h"
 #include <Novice.h>
+#include <Windows.h>
 
 GameManager::GameManager() {
 	// 各シーンの配列
@@ -15,13 +16,18 @@ GameManager::GameManager() {
 }
 
 int GameManager::Run() {
-	const char kWindowTitle[] = "LE2B_16_フミモト_コウサク";
-
+	const char kWindowTitle[] = "LE2B_16_PG3_03_01";
 	// ライブラリの初期化
 	Novice::Initialize(kWindowTitle, kWindowWidth, kWindowHeight);
 
+	inputManager_ = InputManager::GetInstance();
+
+	sceneArr_[currentSceneNo_]->Init();
+
 	while (Novice::ProcessMessage() == 0) {
 		Novice::BeginFrame();
+
+		inputManager_->Update();
 
 		// シーンチェック
 		prevSceneNo_ = currentSceneNo_;
@@ -43,6 +49,10 @@ int GameManager::Run() {
 		sceneArr_[currentSceneNo_]->Draw();
 
 		Novice::EndFrame();
+
+		if (inputManager_->ReleaseKey(DIK_ESCAPE)) {
+			break;
+		}
 	}
 
 	// ライブラリの終了

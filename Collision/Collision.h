@@ -1,6 +1,6 @@
 #pragma once
-#include "Player.h"
-#include "Enemy.h"
+#include "../Player/Player.h"
+#include "../Enemy/Enemy.h"
 #include <memory>
 
 class Collision

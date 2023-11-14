@@ -7,6 +7,8 @@ Player::Player() {
 }
 
 void Player::Init() {
+	inputManager_ = InputManager::GetInstance();
+
 	// 初期値の設定
 	// 座標
 	pos_ = { kWindowWidth / 2, kWindowHeight / 2 };
@@ -25,26 +27,26 @@ void Player::Init() {
 	bullet_.SetPos(pos_);
 }
 
-void Player::Update(char* keys, char* preKeys) {
+void Player::Update() {
 #pragma region 入力処理
 	// 移動処理
 	// Y軸
-	if (keys[DIK_W]) {
+	if (inputManager_->PressKey(DIK_W)) {
 		pos_.y -= vel_.y;
 	}
-	if (keys[DIK_S]) {
+	if (inputManager_->PressKey(DIK_S)) {
 		pos_.y += vel_.y;
 	}
 	// X軸
-	if (keys[DIK_D]) {
+	if (inputManager_->PressKey(DIK_D)) {
 		pos_.x += vel_.x;
 	}
-	if (keys[DIK_A]) {
+	if (inputManager_->PressKey(DIK_A)) {
 		pos_.x -= vel_.x;
 	}
 
 	// 発射処理
-	if (keys[DIK_SPACE] && !preKeys[DIK_SPACE]) {
+	if ( inputManager_->ReleaseKey(DIK_SPACE)) {
 		isShot_ = true;
 	}
 #pragma endregion

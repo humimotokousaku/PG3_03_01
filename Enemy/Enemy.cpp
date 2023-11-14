@@ -1,5 +1,5 @@
 #include "Enemy.h"
-#include "Utility.h"
+#include "../Utility.h"
 #include <Novice.h>
 
 void Enemy::Init() {

@@ -1,8 +1,9 @@
 #pragma once
 #include "IScene.h"
-#include "Player.h"
-#include "Enemy.h"
-#include "Collision.h"
+#include "../Player/Player.h"
+#include "../Enemy/Enemy.h"
+#include "../Collision/Collision.h"
+#include "../Component/InputManager.h"
 
 class GamePlayScene : public IScene
 {
@@ -12,6 +13,8 @@ public:
 	void Update() override;
 	void Draw() override;
 private:
+	InputManager* inputManager_;
+
 	// キー入力結果を受け取る箱
 	char keys[256] = { 0 };
 	char preKeys[256] = { 0 };

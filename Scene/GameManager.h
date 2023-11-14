@@ -4,6 +4,7 @@
 #include "GamePlayScene.h"
 #include "TitleScene.h"
 #include "ClearScene.h"
+#include "../Component/InputManager.h"
 
 class GameManager
 {
@@ -18,5 +19,7 @@ private:
 	std::unique_ptr<IScene> sceneArr_[3];
 	int currentSceneNo_;
 	int prevSceneNo_;
+
+	InputManager* inputManager_;
 };
 
