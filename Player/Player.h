@@ -1,8 +1,5 @@
 #pragma once
 #include "Vector2.h"
-#include "PlayerBullet.h"
-#include "../Enemy/Enemy.h"
-#include "../Component/InputManager.h"
 #include <memory>
 
 class Player
@@ -27,18 +24,19 @@ public:
 	/// 
 	/// User Method
 	/// 
-	// Getter
+	/// キーごとのコマンド
+	// 右に移動
+	void MoveRight();
+	// 左に移動
+	void LeftMove();
+
+	/// Getter
 	Vector2 GetTranslation() { return pos_; }
-	bool GetIsShot() { return isShot_; }
 	float GetRadius() { return radius_; }
 
-	// 包含して弾を作る
-	PlayerBullet bullet_;
 private:
-	InputManager* inputManager_;
 	Vector2 pos_;	// 座標
 	Vector2 vel_;	// 速度
 	float radius_;	// 半径
-	bool isShot_;   // 発射フラグ
 };
 
